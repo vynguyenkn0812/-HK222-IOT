@@ -7,7 +7,7 @@ from Adafruit_IO import MQTTClient
 
 AIO_FEED_ID = ["iot-hk222.light", "iot-hk222.pump"]
 AIO_USERNAME = "vynguyen08122002"
-AIO_KEY = "aio_zGKR548z1JYbjj5m3s1XmgE8xexo"
+AIO_KEY = "aio_Kdnf35yJVUR4Qhw1cJFu3pP7CegI"
 
 def connected(client):
     print("Ket noi thanh cong...")
@@ -48,19 +48,26 @@ client.connect()
 client.loop_background()
 
 counter = 5
+sensor_type = 0
 
 while True:
     counter = counter - 1
     if counter <= 0:
         counter = 5
-        temp = random.randint(0, 50)
-        humi = random.randint(0, 100)
-        brightness = random.randint(0, 500)
-        print("Cap nhat nhiet do: ", temp)
-        client.publish("iot-hk222.temperature", temp)
-        print("Cap nhat do am: ", humi)
-        client.publish("iot-hk222.humidity", temp)
-        print("Cap nhat anh sang: ", brightness)
-        client.publish("iot-hk222.brightness", brightness)
+        if sensor_type == 0:
+            temp = random.randint(0, 50)
+            print("Cap nhat nhiet do: ", temp)
+            client.publish("iot-hk222.temperature", temp)
+            sensor_type = 1
+        elif sensor_type == 1:
+            humi = random.randint(0, 100)
+            print("Cap nhat do am: ", humi)
+            client.publish("iot-hk222.humidity", humi)
+            sensor_type = 2
+        elif sensor_type == 2:
+            brightness = random.randint(0, 500)
+            print("Cap nhat anh sang: ", brightness)
+            client.publish("iot-hk222.brightness", brightness)
+            sensor_type = 0
         
     time.sleep(1)
