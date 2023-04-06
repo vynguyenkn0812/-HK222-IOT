@@ -7,7 +7,7 @@ from Adafruit_IO import MQTTClient
 
 AIO_FEED_ID = ["iot-hk222.light", "iot-hk222.pump"]
 AIO_USERNAME = "vynguyen08122002"
-AIO_KEY = "aio_Kdnf35yJVUR4Qhw1cJFu3pP7CegI"
+AIO_KEY = "aio_jbbh17Y4DOch5E5IMUwgx3U6nwxS"
 
 def connected(client):
     print("Ket noi thanh cong...")
@@ -24,7 +24,7 @@ def disconnected(client):
 def message(client, feed_id, payload):
     print("Nhan du lieu tu " + feed_id + " :" + payload)
 
-# def detPort():
+# def getPort():
 #     ports = serial.tools.list_ports.comports()
 #     N = len(ports)
 #     commPort = "None"
@@ -37,13 +37,15 @@ def message(client, feed_id, payload):
     
 #     return commPort
 
-# ser = serial . Serial ( port = getPort () , baudrate =115200)
+# ser = serial.Serial ( port = getPort() , baudrate =115200)
 
 client = MQTTClient(AIO_USERNAME, AIO_KEY)
+# call back with function pointer
 client.on_connect = connected
 client.on_disconnect = disconnected
 client.on_message = message
 client.on_subscribe = subscribe
+
 client.connect()
 client.loop_background()
 
@@ -71,3 +73,11 @@ while True:
             sensor_type = 0
         
     time.sleep(1)
+    
+    # press Esc to escape program
+    # Listen to the keyboard for presses.
+    keyboard_input = cv2.waitKey(1)
+
+    # 27 is the ASCII for the esc key on your keyboard.
+    if keyboard_input == 27:
+        break
