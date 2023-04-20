@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "#caf0f8"
+    >
+
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        android:layout_weight = "45"
+        android:gravity="center">
+        <ImageView
+            android:src = "@drawable/hcmut"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+
+            >
+
+        </ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        android:layout_weight = "25"
+        android:gravity="center"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="Username"
+            android:gravity="center"
+            android:layout_marginBottom = "10dp"
+            android:background = "@drawable/rounded_corner"
+            >
+        </EditText>
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:gravity="center"
+            android:background = "@drawable/rounded_corner"
+            android:layout_marginBottom = "10dp"
+            android:inputType = "textPassword"
+
+            >
+        </EditText>
+
+        <Button
+            android:id = "@+id/btnLogin"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:background = "#091A6C"
+            android:textColor = "#ffffff"
+
+            >
+
+
+        </Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        android:layout_weight = "30"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
