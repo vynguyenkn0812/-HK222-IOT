@@ -2,6 +2,7 @@ from keras.models import load_model  # TensorFlow is required for Keras to work
 import cv2  # Install opencv-python
 import numpy as np
 import sys
+import time
 
 # Disable scientific notation for clarity
 np.set_printoptions(suppress=True)
@@ -16,11 +17,16 @@ class_names = open("labels.txt", "r").readlines()
 camera = cv2.VideoCapture(0)
 
 def image_detection():
+# while True:
     # Grab the webcamera's image.
     ret, image = camera.read()
 
     # Resize the raw image into (224-height,224-width) pixels
-    image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
+    if image is None:
+        print("Wrong")
+        return "Wrong"
+    else:
+        image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
 
     # Show the image in a window
     cv2.imshow("Webcam Image", image)
@@ -41,6 +47,12 @@ def image_detection():
     print("Class:", class_name[2:], end="")
     print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
 
+    # time.sleep(1)
     return class_name[2:]
-camera.release()
-cv2.destroyAllWindows()
+
+# camera.release()
+# cv2.destroyAllWindows()
+
+# while True:
+#     print(image_detection())
+#     time.sleep(1)
